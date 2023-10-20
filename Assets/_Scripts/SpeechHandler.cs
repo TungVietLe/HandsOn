@@ -6,11 +6,10 @@ using UnityEngine;
 
 public class SpeechHandler:MonoBehaviour
 {
-    private async void Start()
+    public async void StartListener()
     {
-        print("START");
         await StartSpeechListener();
-        print("LETS GOOO!");
+        Debug.Log("Done");
     }
 
 
