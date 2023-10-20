@@ -334,6 +334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 609435062}
   - component: {fileID: 609435063}
+  - component: {fileID: 609435064}
   m_Layer: 0
   m_Name: CLU
   m_TagString: Untagged
@@ -366,6 +367,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b147a2f5417afc8448f76ddcfe0cf2c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &609435064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609435061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b0364eb47ee2ac449c5551d80d9cba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &701684625

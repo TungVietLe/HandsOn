@@ -14,7 +14,7 @@ public class CLUHandler:MonoBehaviour
 
     private void Start()
     {
-        AnalyzeConversation();
+        //AnalyzeConversation();
     }
 
     void AnalyzeConversation()
