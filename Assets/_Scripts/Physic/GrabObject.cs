@@ -1,18 +1,23 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class GrabObject : MonoBehaviour
 {
+    [SerializeField] Button m_handBtn;
+    private bool isHolding = false;
     private Transform objectBeingGrabbed = null;
     private Camera cam;
 
     private void Start()
     {
         cam = Camera.main;
+        m_handBtn.onClick.AddListener(() => isHolding = true);
     }
 
     private void Update()
     {
-        if (Input.touchCount > 0) 
+        if (isHolding)
         {
             if (objectBeingGrabbed == null) 
             {
