@@ -11,6 +11,7 @@ public class PhysicHandler : MonoBehaviour
     {
         foreach (PhysicData obj in physicObjects)
         {
+            if (obj.CompareTag("Hold")) continue;
             Vector3 netForce = new (0, obj.GravitationalForce,0);
             foreach (FluidData fluid in fluidObjects) 
             {

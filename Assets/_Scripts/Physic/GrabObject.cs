@@ -7,6 +7,7 @@ public class GrabObject : MonoBehaviour
     private bool isHolding = false;
     private Transform objectBeingGrabbed = null;
     private Camera cam;
+    private string orginalTag;
 
     public void StartHold()
     {
@@ -35,12 +36,19 @@ public class GrabObject : MonoBehaviour
                     direction = cam.transform.forward
                 };
                 Physics.Raycast(ray, out RaycastHit hit);
-                if (!hit.collider.isTrigger) objectBeingGrabbed = hit.transform;
+                if (!hit.collider.isTrigger)
+                {
+                    orginalTag = hit.transform.tag;
+                    hit.transform.tag = "Hold";
+                    objectBeingGrabbed = hit.transform;
+                }
             }
         }
-        else
+        else if (objectBeingGrabbed != null)
         {
+            objectBeingGrabbed.tag = orginalTag;
             objectBeingGrabbed = null;
+            orginalTag = null;
         }
 
 
