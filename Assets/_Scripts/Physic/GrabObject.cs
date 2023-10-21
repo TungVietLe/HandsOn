@@ -8,6 +8,7 @@ public class GrabObject : MonoBehaviour
     private Transform objectBeingGrabbed = null;
     private Camera cam;
     private string orginalTag;
+    private float distanceOnPickUp;
 
     public void StartHold()
     {
@@ -39,6 +40,7 @@ public class GrabObject : MonoBehaviour
                 if (!hit.collider.isTrigger)
                 {
                     orginalTag = hit.transform.tag;
+                    distanceOnPickUp = hit.distance;
                     hit.transform.tag = "Hold";
                     objectBeingGrabbed = hit.transform;
                 }
@@ -49,12 +51,13 @@ public class GrabObject : MonoBehaviour
             objectBeingGrabbed.tag = orginalTag;
             objectBeingGrabbed = null;
             orginalTag = null;
+            distanceOnPickUp = 0;
         }
 
 
         if (objectBeingGrabbed != null)
         {
-            objectBeingGrabbed.position = cam.transform.position + cam.transform.forward *3;
+            objectBeingGrabbed.position = cam.transform.position + cam.transform.forward * distanceOnPickUp;
         }
     }
 }
