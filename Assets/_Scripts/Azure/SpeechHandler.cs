@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
@@ -22,12 +23,19 @@ public class SpeechHandler:MonoBehaviour
         StartCoroutine(StartSpeechListener());
     }
 
+    private void Update()
+    {
+        if (Input.touchCount > 0)
+        {
+            m_logTMP.text = "Starting";
+            StartListener();
+        }
+    }
 
 
     // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-    static string speechKey = "cb85f1a313804f7ca53883d858594aa9";
-    static string speechRegion = "eastus";
-
+    static string speechKey = Environment.GetEnvironmentVariable("SPEECH_KEY");
+    static string speechRegion = Environment.GetEnvironmentVariable("SPEECH_REGION");
     private void OutputSpeechRecognitionResult(SpeechRecognitionResult speechRecognitionResult)
     {
         switch (speechRecognitionResult.Reason)
@@ -45,8 +53,8 @@ public class SpeechHandler:MonoBehaviour
                 if (cancellation.Reason == CancellationReason.Error)
                 {
                     m_logTMP.text = ($"CANCELED: ErrorCode={cancellation.ErrorCode}");
-                    m_logTMP.text = ($"CANCELED: ErrorDetails={cancellation.ErrorDetails}");
-                    m_logTMP.text = ($"CANCELED: Did you set the speech resource key and region values?");
+                    m_logTMP.text += ($"CANCELED: ErrorDetails={cancellation.ErrorDetails}");
+                    //m_logTMP.text = ($"CANCELED: Did you set the speech resource key and region values?");
                 }
                 break;
         }
