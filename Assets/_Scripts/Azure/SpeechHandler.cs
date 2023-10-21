@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Obsolete("This is an obsolete class, use SpeechToTextHandler instead")]
 public class SpeechHandler:MonoBehaviour
 {
     [SerializeField] Button m_startListenBtn;

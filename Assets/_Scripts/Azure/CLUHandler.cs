@@ -4,21 +4,35 @@ using System;
 using UnityEngine;
 using Azure.Core;
 using System.Text.Json;
+using TMPro;
 
 public class CLUHandler:MonoBehaviour
 {
-    static Uri endpoint = new Uri("https://handson-language.cognitiveservices.azure.com/");
-    static AzureKeyCredential credential = new AzureKeyCredential("39b68f779455491da41fe178fbda077f");
+    public static CLUHandler Instance { get; private set; }
+    [SerializeField] 
+    private TextMeshProUGUI m_logTmp;
+    private string logContent;
 
-    ConversationAnalysisClient client = new ConversationAnalysisClient(endpoint, credential);
+    private static Uri endpoint = new Uri("https://handson-language.cognitiveservices.azure.com/");
+    private static AzureKeyCredential credential = new AzureKeyCredential("39b68f779455491da41fe178fbda077f");
 
-    private void Start()
+    private ConversationAnalysisClient client = new ConversationAnalysisClient(endpoint, credential);
+
+    private void Awake()
     {
-        //AnalyzeConversation();
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    void AnalyzeConversation()
+    public void AnalyzeConversation(string prompt)
     {
+        logContent = "";
         string projectName = "HandsOn-project";
         string deploymentName = "deploy1";
 
@@ -28,7 +42,7 @@ public class CLUHandler:MonoBehaviour
             {
                 conversationItem = new
                 {
-                    text = "Give me a cup to measure",
+                    text = prompt,
                     id = "1",
                     participantId = "1",
                 }
@@ -50,25 +64,25 @@ public class CLUHandler:MonoBehaviour
         JsonElement conversationalTaskResult = result.RootElement;
         JsonElement conversationPrediction = conversationalTaskResult.GetProperty("result").GetProperty("prediction");
 
-        Debug.Log($"Top intent: {conversationPrediction.GetProperty("topIntent").GetString()}");
+        logContent += ($"Top intent: {conversationPrediction.GetProperty("topIntent").GetString()}");
 
         Debug.Log("Intents:");
         foreach (JsonElement intent in conversationPrediction.GetProperty("intents").EnumerateArray())
         {
-            Debug.Log($"Category: {intent.GetProperty("category").GetString()}");
-            Debug.Log($"Confidence: {intent.GetProperty("confidenceScore").GetSingle()}");
-            Debug.Log("");
+            logContent += ($"Category: {intent.GetProperty("category").GetString()}");
+            logContent += ($"Confidence: {intent.GetProperty("confidenceScore").GetSingle()}");
+            logContent += ("");
         }
 
-        Debug.Log("Entities:");
+        logContent += ("Entities:");
         foreach (JsonElement entity in conversationPrediction.GetProperty("entities").EnumerateArray())
         {
-            Debug.Log($"Category: {entity.GetProperty("category").GetString()}");
-            Debug.Log($"Text: {entity.GetProperty("text").GetString()}");
-            Debug.Log($"Offset: {entity.GetProperty("offset").GetInt32()}");
-            Debug.Log($"Length: {entity.GetProperty("length").GetInt32()}");
-            Debug.Log($"Confidence: {entity.GetProperty("confidenceScore").GetSingle()}");
-            Debug.Log("");
+            logContent += ($"Category: {entity.GetProperty("category").GetString()}");
+            logContent += ($"Text: {entity.GetProperty("text").GetString()}");
+            logContent += ($"Offset: {entity.GetProperty("offset").GetInt32()}");
+            logContent += ($"Length: {entity.GetProperty("length").GetInt32()}");
+            logContent += ($"Confidence: {entity.GetProperty("confidenceScore").GetSingle()}");
+            logContent += ("");
 
             if (entity.TryGetProperty("resolutions", out JsonElement resolutions))
             {
@@ -76,13 +90,19 @@ public class CLUHandler:MonoBehaviour
                 {
                     if (resolution.GetProperty("resolutionKind").GetString() == "DateTimeResolution")
                     {
-                        Debug.Log($"Datetime Sub Kind: {resolution.GetProperty("dateTimeSubKind").GetString()}");
-                        Debug.Log($"Timex: {resolution.GetProperty("timex").GetString()}");
-                        Debug.Log($"Value: {resolution.GetProperty("value").GetString()}");
-                        Debug.Log("");
+                        logContent += ($"Datetime Sub Kind: {resolution.GetProperty("dateTimeSubKind").GetString()}");
+                        logContent += ($"Timex: {resolution.GetProperty("timex").GetString()}");
+                        logContent += ($"Value: {resolution.GetProperty("value").GetString()}");
+                        logContent += ("");
                     }
                 }
             }
         }
+
+    }
+    private void Update()
+    {
+        m_logTmp.text = logContent;
+        
     }
 }

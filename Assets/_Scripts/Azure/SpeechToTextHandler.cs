@@ -15,7 +15,7 @@ using UnityEngine.iOS;
 using System.Collections;
 #endif
 
-public class HelloWorld : MonoBehaviour
+public class SpeechToTextHandler : MonoBehaviour
 {
     // Hook up the two properties below with a Text and Button object in your UI.
     public TextMeshProUGUI outputText;
@@ -60,6 +60,7 @@ public class HelloWorld : MonoBehaviour
             if (result.Reason == ResultReason.RecognizedSpeech)
             {
                 newMessage = result.Text;
+                CLUHandler.Instance.AnalyzeConversation(newMessage);
             }
             else if (result.Reason == ResultReason.NoMatch)
             {
@@ -96,7 +97,7 @@ public class HelloWorld : MonoBehaviour
 #if PLATFORM_ANDROID
             // Request to use the microphone, cf.
             // https://docs.unity3d.com/Manual/android-RequestingPermissions.html
-            message = "Waiting for mic permission";
+            //message = "Waiting for mic permission";
             if (!Permission.HasUserAuthorizedPermission(Permission.Microphone))
             {
                 Permission.RequestUserPermission(Permission.Microphone);
