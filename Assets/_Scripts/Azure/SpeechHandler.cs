@@ -1,23 +1,25 @@
-using System;
-using System.Threading.Tasks;
+using System.Collections;
 using Microsoft.CognitiveServices.Speech;
 using Microsoft.CognitiveServices.Speech.Audio;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SpeechHandler:MonoBehaviour
 {
     [SerializeField] Button m_startListenBtn;
+    [SerializeField] TextMeshProUGUI m_logTMP;
+    private bool isListening = false;
+    private SpeechRecognizer speechRecognizer;
 
     private void Start()
     {
         m_startListenBtn.onClick.AddListener(StartListener);
     }
-    public async void StartListener()
+    public void StartListener()
     {
-        m_startListenBtn.interactable = false;
-        await StartSpeechListener();
-        m_startListenBtn.interactable = true;
+        if (isListening) return;
+        StartCoroutine(StartSpeechListener());
     }
 
 
@@ -26,30 +28,30 @@ public class SpeechHandler:MonoBehaviour
     static string speechKey = "cb85f1a313804f7ca53883d858594aa9";
     static string speechRegion = "eastus";
 
-    static void OutputSpeechRecognitionResult(SpeechRecognitionResult speechRecognitionResult)
+    private void OutputSpeechRecognitionResult(SpeechRecognitionResult speechRecognitionResult)
     {
         switch (speechRecognitionResult.Reason)
         {
             case ResultReason.RecognizedSpeech:
-                Debug.Log($"RECOGNIZED: Text={speechRecognitionResult.Text}");
+                m_logTMP.text = ($"RECOGNIZED: Text={speechRecognitionResult.Text}");
                 break;
             case ResultReason.NoMatch:
-                Debug.Log($"NOMATCH: Speech could not be recognized.");
+                m_logTMP.text = ($"NOMATCH: Speech could not be recognized.");
                 break;
             case ResultReason.Canceled:
                 var cancellation = CancellationDetails.FromResult(speechRecognitionResult);
-                Debug.Log($"CANCELED: Reason={cancellation.Reason}");
+                m_logTMP.text = ($"CANCELED: Reason={cancellation.Reason}");
 
                 if (cancellation.Reason == CancellationReason.Error)
                 {
-                    Debug.Log($"CANCELED: ErrorCode={cancellation.ErrorCode}");
-                    Debug.Log($"CANCELED: ErrorDetails={cancellation.ErrorDetails}");
-                    Debug.Log($"CANCELED: Did you set the speech resource key and region values?");
+                    m_logTMP.text = ($"CANCELED: ErrorCode={cancellation.ErrorCode}");
+                    m_logTMP.text = ($"CANCELED: ErrorDetails={cancellation.ErrorDetails}");
+                    m_logTMP.text = ($"CANCELED: Did you set the speech resource key and region values?");
                 }
                 break;
         }
     }
-
+    /*
     async static Task StartSpeechListener()
     {
         var speechConfig = SpeechConfig.FromSubscription(speechKey, speechRegion);
@@ -61,5 +63,33 @@ public class SpeechHandler:MonoBehaviour
         Debug.Log("Speak into your microphone.");
         var speechRecognitionResult = await speechRecognizer.RecognizeOnceAsync();
         OutputSpeechRecognitionResult(speechRecognitionResult);
+    }
+     */
+    private IEnumerator StartSpeechListener()
+    {
+        var speechConfig = SpeechConfig.FromSubscription(speechKey, speechRegion);
+        speechConfig.SpeechRecognitionLanguage = "en-US";
+
+        using var audioConfig = AudioConfig.FromDefaultMicrophoneInput();
+        speechRecognizer = new SpeechRecognizer(speechConfig, audioConfig);
+
+        Debug.Log("Speak into your microphone.");
+        isListening = true;
+        m_startListenBtn.interactable = false;
+
+        var operation = speechRecognizer.RecognizeOnceAsync();
+
+        while (!operation.IsCompleted)
+        {
+            yield return null; // Wait for the operation to complete.
+        }
+
+        var speechRecognitionResult = operation.Result;
+        OutputSpeechRecognitionResult(speechRecognitionResult);
+
+        // Don't forget to clean up the recognizer.
+        speechRecognizer.Dispose();
+        isListening = false;
+        m_startListenBtn.interactable = true;
     }
 }
