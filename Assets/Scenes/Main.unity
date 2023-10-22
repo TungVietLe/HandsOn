@@ -2366,7 +2366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Density: 7874
-  m_lineMat: {fileID: 0}
+  m_lineMat: {fileID: 2100000, guid: c012ac27acfc8b848b8eb9beeb5c9e0a, type: 2}
 --- !u!4 &2078845367
 Transform:
   m_ObjectHideFlags: 0
