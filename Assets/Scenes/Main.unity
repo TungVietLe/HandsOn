@@ -425,6 +425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Density: 800
+  m_lineMat: {fileID: 2100000, guid: c012ac27acfc8b848b8eb9beeb5c9e0a, type: 2}
 --- !u!1001 &548315906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2364,7 +2365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 866807b2be1dcba45850cf0f53ed64f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Density: 800
+  Density: 7874
+  m_lineMat: {fileID: 0}
 --- !u!4 &2078845367
 Transform:
   m_ObjectHideFlags: 0

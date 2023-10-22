@@ -12,24 +12,23 @@ public class PhysicHandler : MonoBehaviour
         foreach (PhysicData obj in physicObjects)
         {
             if (obj.CompareTag("Hold")) continue;
-            Vector3 netForce = new (0, obj.GravitationalForce,0);
-            Debug.DrawLine(obj.transform.position, obj.transform.position + netForce * 0.001f, color: Color.black, duration:Time.fixedDeltaTime);
             foreach (FluidData fluid in fluidObjects) 
             {
                 var submergeVol = CalculateIntersectionVolume(obj.transform, fluid.transform);
                 Vector3 archimedesForce = new (0, -submergeVol * fluid.Density * Physics.gravity.y,0);
-                netForce += archimedesForce;
                 fluid.AddSumergeVolume(submergeVol);
-                Debug.DrawLine(obj.transform.position, obj.transform.position + archimedesForce * 0.001f, color: Color.yellow, duration: Time.fixedDeltaTime);
+                obj.AddForce(archimedesForce, "archimedes");
             }
-
-            obj.setNetForce(netForce);
         }
 
         foreach (FluidData fluid in fluidObjects)
         {
             fluid.UpdateFluidHeight();
         }
+    }
+
+    private void OnPostRender()
+    {
     }
 
     float CalculateIntersectionVolume(Transform t1, Transform t2)
