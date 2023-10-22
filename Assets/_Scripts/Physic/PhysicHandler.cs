@@ -27,10 +27,6 @@ public class PhysicHandler : MonoBehaviour
         }
     }
 
-    private void OnPostRender()
-    {
-    }
-
     float CalculateIntersectionVolume(Transform t1, Transform t2)
     {
         var pos1 = t1.position;

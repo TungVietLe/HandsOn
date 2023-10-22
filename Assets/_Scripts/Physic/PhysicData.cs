@@ -29,11 +29,6 @@ public class PhysicData : MonoBehaviour
     {
         get { return 0.5f * Mass * Mathf.Pow(rb.velocity.y,2); }
     }
-    public void setNetForce(Vector3 netForce)
-    {
-        rb.AddForce(netForce);
-    }
-
     private Rigidbody rb;
     private Dictionary<string, Vector3> forces = new();
     public void AddForce(Vector3 forceToAdd, string id)
@@ -47,16 +42,18 @@ public class PhysicData : MonoBehaviour
             forces.Add(id, forceToAdd);
         }
     }
+
+
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
         rb.mass = Volume * Density;
+        rb.drag = EnvironmentConfig.linearDrag;
     }
-    private void Update()
-    {
-        Debug.Log(GravitationalForce);
-    }
+
     private void FixedUpdate()
     {
         AddForce(new Vector3(0,GravitationalForce,0), "gravity");
