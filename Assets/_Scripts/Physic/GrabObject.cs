@@ -1,24 +1,29 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(EventTrigger))]
 public class GrabObject : MonoBehaviour
 {
+    [SerializeField] Image m_circle;
+    [SerializeField] Image m_aim;
     private bool isHolding = false;
     private Transform objectBeingGrabbed = null;
     private Camera cam;
     private string orginalTag;
     private float distanceOnPickUp;
-
     public void StartHold()
     {
         isHolding= true;
-        transform.GetChild(0).gameObject.SetActive(false);
+        m_circle.DOFade(.7f, 0.5f);
+        m_aim.DOFade(.7f, 0.5f);
     }
     public void StopHold()
     {
         isHolding= false;
-        transform.GetChild(0).gameObject.SetActive(true);
+        m_circle.DOFade(0, 0.5f);
+        m_aim.DOFade(0, 0.5f);
     }
     private void Start()
     {
@@ -37,12 +42,14 @@ public class GrabObject : MonoBehaviour
                     direction = cam.transform.forward
                 };
                 Physics.Raycast(ray, out RaycastHit hit);
-                if (!hit.collider.isTrigger)
+                if (hit.collider != null && !hit.collider.isTrigger)
                 {
                     orginalTag = hit.transform.tag;
                     distanceOnPickUp = hit.distance;
                     hit.transform.tag = "Hold";
                     objectBeingGrabbed = hit.transform;
+                    m_aim.DOKill();
+                    m_aim.DOFade(0, 0.1f);
                 }
             }
         }
