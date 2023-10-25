@@ -29,10 +29,10 @@ public class PhysicHandler : MonoBehaviour
 
     float CalculateIntersectionVolume(Transform t1, Transform t2)
     {
-        var pos1 = t1.position;
-        var pos2 = t2.position;
-        var size1 = t1.lossyScale;
-        var size2 = t2.lossyScale;
+        var pos1 = t1.localPosition;
+        var pos2 = t2.localPosition;
+        var size1 = t1.localScale;
+        var size2 = t2.localScale;
         Vector3 min = Vector3.Max(pos1 - size1 / 2, pos2 - size2 / 2);
         Vector3 max = Vector3.Min(pos1 + size1 / 2, pos2 + size2 / 2);
 
