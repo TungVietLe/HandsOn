@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Security.Claims;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -10,6 +11,7 @@ public class WorkSpaceInit : MonoBehaviour
     [SerializeField] private GameObject m_initUI;
     [SerializeField] private GameObject m_lineUI;
     [SerializeField] private GameObject m_mainUI;
+    [SerializeField] private TextMeshProUGUI m_TMP;
     [Header("Init")]
     [SerializeField] private GameObject m_horizontalLine;
     [SerializeField] private Material m_lineMat;
@@ -18,9 +20,7 @@ public class WorkSpaceInit : MonoBehaviour
     [SerializeField] private WorkSpace m_workSpaceToSpawn;
 
     private Camera cam;
-    private Vector3 point1 = new();
-    private Vector3 point2 = new();
-    private Vector3 point3 = new();
+    private int currentPoint = 0;
     private bool isLockedHorizontal = false;
     public void toogleLockHorizontal()
     {
@@ -29,10 +29,12 @@ public class WorkSpaceInit : MonoBehaviour
         {
             m_lineUI.SetActive(false);
             m_horizontalLine.transform.position = cam.transform.position;
+            m_TMP.text = "Draw table sides";
         }
         else
         {
             m_lineUI.SetActive(true);
+            m_TMP.text = "Align line to table surface";
         }
     }
 
@@ -53,6 +55,10 @@ public class WorkSpaceInit : MonoBehaviour
             if (hit.collider != null)
             {
                 m_cursor.position = hit.point;
+                if (currentPoint <= 2)
+                {
+                    m_lineRen.SetPosition(currentPoint, hit.point);
+                }
             }
         }
     }
@@ -64,6 +70,11 @@ public class WorkSpaceInit : MonoBehaviour
         m_lineRen.gameObject.SetActive(false);
         m_horizontalLine.gameObject.SetActive(false);
 
+        var point1 = m_lineRen.GetPosition(0);
+        var point2 = m_lineRen.GetPosition(1);
+        var point3 = m_lineRen.GetPosition(2);
+
+
         var workspace = Instantiate(m_workSpaceToSpawn, (point1+point3)*0.5f, Quaternion.identity);
         workspace.transform.LookAt((point3+point2)*0.5f);
         workspace.Height = (point1 - point2).magnitude;
@@ -71,31 +82,17 @@ public class WorkSpaceInit : MonoBehaviour
     }
     public void OnPointerDown(BaseEventData data)
     {
-        Debug.Log("try cast ray");
-        Ray ray = new()
-        {
-            origin = cam.transform.position,
-            direction = cam.transform.forward
-        };
-        Physics.Raycast(ray, out RaycastHit hit);
-        if (hit.collider != null)
-        {
-            Debug.Log(hit.point);
-            if (point1 == Vector3.zero)
-            {
-                point1 = hit.point;
-                m_lineRen.SetPosition(0, point1);
-            }
-            else if (point2 == Vector3.zero)
-            {
-                point2 = hit.point;
-                m_lineRen.SetPosition(1, point2);
-            }
-            else
-            {
-                point3 = hit.point;
-                m_lineRen.SetPosition(2, point3);
-            }
-        }
+        if (!isLockedHorizontal) return;
+        NextPoint();
+    }
+    private void NextPoint()
+    {
+        currentPoint++;
+        if (currentPoint > 2) return;
+        m_lineRen.positionCount = currentPoint+1;
+    }
+    public void PrevPoint()
+    {
+        currentPoint--;
     }
 }
