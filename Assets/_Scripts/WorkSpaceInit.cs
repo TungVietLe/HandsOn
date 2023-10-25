@@ -61,7 +61,7 @@ public class WorkSpaceInit : MonoBehaviour
         m_initUI.gameObject.SetActive(false);
         m_mainUI.gameObject.SetActive(true);
         m_cursor.gameObject.SetActive(false);
-        //m_lineRen.gameObject.SetActive(false);
+        m_lineRen.gameObject.SetActive(false);
         m_horizontalLine.gameObject.SetActive(false);
 
         var workspace = Instantiate(m_workSpaceToSpawn, (point1+point3)*0.5f, Quaternion.identity);
