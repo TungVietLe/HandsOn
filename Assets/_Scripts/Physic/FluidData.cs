@@ -26,7 +26,7 @@ public class FluidData : MonoBehaviour
         var newVolume = m_totalSubmergeVolume + m_originalVolume;
         var newHeight = (float)newVolume / m_bottomArea;
         transform.localScale = new Vector3(transform.localScale.x, newHeight, transform.localScale.z);
-        transform.position = new Vector3(transform.position.x, (float)newHeight / 2, transform.position.z);
+        transform.localPosition = new Vector3(transform.localPosition.x, (float)newHeight / 2, transform.localPosition.z);
         m_totalSubmergeVolume = 0;
     }
 }

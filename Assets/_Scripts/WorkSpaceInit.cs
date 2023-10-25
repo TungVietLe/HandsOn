@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Security.Claims;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -7,6 +8,7 @@ public class WorkSpaceInit : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private GameObject m_initUI;
+    [SerializeField] private GameObject m_lineUI;
     [SerializeField] private GameObject m_mainUI;
     [Header("Init")]
     [SerializeField] private GameObject m_horizontalLine;
@@ -23,6 +25,15 @@ public class WorkSpaceInit : MonoBehaviour
     public void toogleLockHorizontal()
     {
         isLockedHorizontal = !isLockedHorizontal;
+        if (isLockedHorizontal)
+        {
+            m_lineUI.SetActive(false);
+            m_horizontalLine.transform.position = cam.transform.position;
+        }
+        else
+        {
+            m_lineUI.SetActive(true);
+        }
     }
 
     private void Start()
@@ -31,15 +42,7 @@ public class WorkSpaceInit : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            SceneManager.LoadScene("workspace", LoadSceneMode.Additive);
-        }
-        if (!isLockedHorizontal)
-        {
-            m_horizontalLine.transform.position = new Vector3(cam.transform.position.x, m_horizontalLine.transform.position.y, cam.transform.position.z);
-        }
-        else
+        if (isLockedHorizontal)
         {
             Ray ray = new()
             {
@@ -94,11 +97,5 @@ public class WorkSpaceInit : MonoBehaviour
                 m_lineRen.SetPosition(2, point3);
             }
         }
-    }
-    public void OnDrag(BaseEventData data)
-    {
-        if (isLockedHorizontal) return;
-        PointerEventData touch = data as PointerEventData;
-        m_horizontalLine.transform.position += new Vector3(0, touch.delta.y * Time.deltaTime, 0);
     }
 }
