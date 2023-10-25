@@ -13,7 +13,7 @@ public class WorkSpaceInit : MonoBehaviour
     [SerializeField] private GameObject m_mainUI;
     [SerializeField] private TextMeshProUGUI m_TMP;
     [Header("Init")]
-    [SerializeField] private GameObject m_horizontalLine;
+    [SerializeField] private GameObject m_horizontalPlane;
     [SerializeField] private Material m_lineMat;
     [SerializeField] private LineRenderer m_lineRen;
     [SerializeField] private Transform m_cursor;
@@ -28,12 +28,14 @@ public class WorkSpaceInit : MonoBehaviour
         if (isLockedHorizontal)
         {
             m_lineUI.SetActive(false);
-            m_horizontalLine.transform.position = cam.transform.position;
+            m_horizontalPlane.SetActive(true);
+            m_horizontalPlane.transform.position = cam.transform.position;
             m_TMP.text = "Draw table sides";
         }
         else
         {
             m_lineUI.SetActive(true);
+            m_horizontalPlane.SetActive(false);
             m_TMP.text = "Align line to table surface";
         }
     }
@@ -68,7 +70,7 @@ public class WorkSpaceInit : MonoBehaviour
         m_mainUI.gameObject.SetActive(true);
         m_cursor.gameObject.SetActive(false);
         m_lineRen.gameObject.SetActive(false);
-        m_horizontalLine.gameObject.SetActive(false);
+        m_horizontalPlane.gameObject.SetActive(false);
 
         var point1 = m_lineRen.GetPosition(0);
         var point2 = m_lineRen.GetPosition(1);
