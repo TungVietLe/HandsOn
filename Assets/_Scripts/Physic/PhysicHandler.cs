@@ -9,42 +9,36 @@ public class PhysicHandler : MonoBehaviour
     private List<FluidData> fluidObjects;
     private void FixedUpdate()
     {
-        foreach (PhysicData obj in physicObjects)
+        foreach (FluidData fluid in fluidObjects) 
         {
-            if (obj.CompareTag("Hold")) continue;
-            foreach (FluidData fluid in fluidObjects) 
+            foreach(var obj in physicObjects)
             {
+                if (obj.CompareTag("Hold")) continue;
                 var submergeVol = CalculateIntersectionVolume(obj.transform, fluid.transform);
+                if (submergeVol == 0f) continue;
                 Vector3 archimedesForce = new (0, -submergeVol * fluid.Density * Physics.gravity.y,0);
                 fluid.AddSumergeVolume(submergeVol);
                 obj.AddForce(archimedesForce, "archimedes");
             }
-        }
-
-        foreach (FluidData fluid in fluidObjects)
-        {
-            fluid.UpdateFluidHeight();
+        fluid.UpdateFluidHeight();
         }
     }
 
     float CalculateIntersectionVolume(Transform t1, Transform t2)
     {
-        var pos1 = t1.localPosition;
-        var pos2 = t2.localPosition;
-        var size1 = t1.localScale;
-        var size2 = t2.localScale;
-        Vector3 min = Vector3.Max(pos1 - size1 / 2, pos2 - size2 / 2);
-        Vector3 max = Vector3.Min(pos1 + size1 / 2, pos2 + size2 / 2);
+        Vector3 cube1Position = t1.localPosition;
+        Vector3 cube2Position = t2.localPosition;
+        Vector3 cube1Size = t1.localScale;
+        Vector3 cube2Size = t2.localScale;
 
-        // Check if there is an intersection
-        if (min.x < max.x && min.y < max.y && min.z < max.z)
-        {
-            // Calculate the intersection volume
-            Vector3 intersectionSize = max - min;
-            float volume = intersectionSize.x * intersectionSize.y * intersectionSize.z;
-            return volume;
-        }
+        // Calculate the intersection area in each plane
+        float intersectionX = Mathf.Max(0, Mathf.Min(cube1Position.x + cube1Size.x / 2, cube2Position.x + cube2Size.x / 2) - Mathf.Max(cube1Position.x - cube1Size.x / 2, cube2Position.x - cube2Size.x / 2));
+        float intersectionY = Mathf.Max(0, Mathf.Min(cube1Position.y + cube1Size.y / 2, cube2Position.y + cube2Size.y / 2) - Mathf.Max(cube1Position.y - cube1Size.y / 2, cube2Position.y - cube2Size.y / 2));
+        float intersectionZ = Mathf.Max(0, Mathf.Min(cube1Position.z + cube1Size.z / 2, cube2Position.z + cube2Size.z / 2) - Mathf.Max(cube1Position.z - cube1Size.z / 2, cube2Position.z - cube2Size.z / 2));
 
-        return 0f; // No intersection
+        // Calculate the intersection volume
+        float volume = intersectionX * intersectionY * intersectionZ;
+
+        return volume;
     }
 }

@@ -196,8 +196,8 @@ MonoBehaviour:
   - {fileID: 1920526444055722393}
   - {fileID: 5173046961618651063}
   fluidObjects:
-  - {fileID: 7206278816343867796}
   - {fileID: 5488375257638967955}
+  - {fileID: 7206278816343867796}
 --- !u!1 &3745292862845030832
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,8 +227,8 @@ Transform:
   m_GameObject: {fileID: 3745292862845030832}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.822, y: 0.682, z: 1.166}
-  m_LocalScale: {x: 2, y: 1, z: 1}
+  m_LocalPosition: {x: -0.834, y: 0.5, z: 1.2163372}
+  m_LocalScale: {x: 2.16, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3404579904479975188}
@@ -310,7 +310,7 @@ BoxCollider:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 1
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -350,11 +350,11 @@ Transform:
   - {fileID: 2630530614263691483}
   - {fileID: 8028296087788308229}
   - {fileID: 3290450875078007698}
+  - {fileID: 2962675096647304137}
   - {fileID: 6672979821236980439}
   - {fileID: 8643875058797979440}
   - {fileID: 3803131248385310966}
   - {fileID: 219251906111049271}
-  - {fileID: 2962675096647304137}
   - {fileID: 5170986630003254615}
   - {fileID: 3235882829109242697}
   m_Father: {fileID: 0}
