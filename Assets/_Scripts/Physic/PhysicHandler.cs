@@ -4,19 +4,19 @@ using UnityEngine;
 public class PhysicHandler : MonoBehaviour
 {
     [SerializeField]
-    private List<PhysicData> physicObjects;
+    private List<Solid> physicObjects;
     [SerializeField]
-    private List<FluidData> fluidObjects;
+    private List<Liquid> fluidObjects;
     private void FixedUpdate()
     {
-        foreach (FluidData fluid in fluidObjects) 
+        foreach (Liquid fluid in fluidObjects) 
         {
             foreach(var obj in physicObjects)
             {
                 if (obj.CompareTag("Hold")) continue;
                 var submergeVol = CalculateIntersectionVolume(obj.transform, fluid.transform);
                 if (submergeVol == 0f) continue;
-                Vector3 archimedesForce = new (0, -submergeVol * fluid.Density * Physics.gravity.y,0);
+                Vector3 archimedesForce = new (0, -submergeVol * fluid.PhysicData.Density * Physics.gravity.y,0);
                 fluid.AddSumergeVolume(submergeVol);
                 obj.AddForce(archimedesForce, "archimedes");
             }

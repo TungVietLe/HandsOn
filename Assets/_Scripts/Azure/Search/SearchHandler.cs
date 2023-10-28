@@ -10,7 +10,7 @@ using System.Text.Json.Serialization;
 
 public class SearchHandler : MonoBehaviour
 {
-    private void Start()
+    private void CallThisShit()
     {
         IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");//E:\Unity Editors Location 2\2022.3.11f1\Editor
         IConfigurationRoot configuration = builder.Build();

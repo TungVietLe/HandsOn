@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class FluidData : MonoBehaviour
+public class Liquid : MonoBehaviour
 {
-    public float Density;
-
+    public PhysicData PhysicData;
     private float m_originalVolume;
     private float m_bottomArea;
 
