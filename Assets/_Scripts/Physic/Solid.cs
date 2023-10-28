@@ -5,6 +5,7 @@ using UnityEngine;
 public class Solid : MonoBehaviour
 {
     public PhysicData PhysicData;
+    public int Density = 1000;
     public float Height
     {
         get { return transform.position.y; }
@@ -46,12 +47,13 @@ public class Solid : MonoBehaviour
 
 
 
-    private void Awake()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
-        rb.mass = Volume * PhysicData.Density;
+        rb.mass = Volume * Density;
         rb.drag = EnvironmentConfig.linearDrag;
+        PhysicHandler.Instance.SolidObjects.Add(this);
     }
 
     private void FixedUpdate()

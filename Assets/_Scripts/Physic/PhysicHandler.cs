@@ -3,20 +3,31 @@ using UnityEngine;
 
 public class PhysicHandler : MonoBehaviour
 {
-    [SerializeField]
-    private List<Solid> physicObjects;
-    [SerializeField]
-    private List<Liquid> fluidObjects;
+    public static PhysicHandler Instance { get; private set; }  
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
+    [HideInInspector]public List<Solid> SolidObjects = new();
+    [HideInInspector]public List<Liquid> LiquidObjects = new();
     private void FixedUpdate()
     {
-        foreach (Liquid fluid in fluidObjects) 
+        foreach (Liquid fluid in LiquidObjects) 
         {
-            foreach(var obj in physicObjects)
+            foreach(var obj in SolidObjects)
             {
                 if (obj.CompareTag("Hold")) continue;
                 var submergeVol = CalculateIntersectionVolume(obj.transform, fluid.transform);
                 if (submergeVol == 0f) continue;
-                Vector3 archimedesForce = new (0, -submergeVol * fluid.PhysicData.Density * Physics.gravity.y,0);
+                Vector3 archimedesForce = new (0, -submergeVol * fluid.Density * Physics.gravity.y,0);
                 fluid.AddSumergeVolume(submergeVol);
                 obj.AddForce(archimedesForce, "archimedes");
             }

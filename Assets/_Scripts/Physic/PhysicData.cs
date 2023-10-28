@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PhysicData:MonoBehaviour
 {
-    public float Density;
+    public float Density = 1000;
 
     private string state;
     public string State

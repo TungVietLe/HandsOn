@@ -1,12 +1,15 @@
 using System.Text.Json;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public partial class CLUHandler
 {
     [SerializeField] PhysicData m_test;
+
+    private GameObject nearestSpawn;
     private void Start()
     {
-            m_test.GetType().GetField("Density").SetValue(m_test, 555);
+        AnalyzeConversation("give me a weight made of water");
     }
     private void HandleSpawn(JsonElement conversationPrediction)
     {
@@ -14,7 +17,28 @@ public partial class CLUHandler
         {
             var fieldName = entity.GetProperty("category").GetString();
             var resource = Resources.Load($"{fieldName}/{entity.GetProperty("text").GetString()}");
-            logContent.GetType().GetField(fieldName).SetValue(logContent, resource);
+
+            switch (fieldName)
+            {
+                case "Object.Name":
+                    nearestSpawn = (GameObject)Instantiate(resource);
+                    break;
+                case "Object.Material":
+                    if (nearestSpawn == null)
+                    {
+                        nearestSpawn = (GameObject) Instantiate(Resources.Load("Object.Name/weight"));
+                    }
+                    if (nearestSpawn.TryGetComponent(out MeshRenderer meshRen))
+                    {
+                        meshRen.material = resource as Material;
+                        nearestSpawn = null;
+                    }
+                    break;
+                default:
+                    // code block
+                    break;
+            }
+
             logContent += ($"Text: {entity.GetProperty("text").GetString()}");
             logContent += ($"Offset: {entity.GetProperty("offset").GetInt32()}");
             logContent += ($"Length: {entity.GetProperty("length").GetInt32()}");

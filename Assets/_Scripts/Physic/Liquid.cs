@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class Liquid : MonoBehaviour
 {
+    [HideInInspector]
     public PhysicData PhysicData;
+    public int Density;
     private float m_originalVolume;
     private float m_bottomArea;
 
@@ -14,6 +16,7 @@ public class Liquid : MonoBehaviour
     {
         m_bottomArea = transform.lossyScale.x * transform.lossyScale.z;
         m_originalVolume = m_bottomArea * transform.lossyScale.y;
+        PhysicHandler.Instance.LiquidObjects.Add(this);
     }
     private float m_totalSubmergeVolume;
     public void AddSumergeVolume(float volumeToAdd)
