@@ -6,7 +6,7 @@ using Azure.Core;
 using System.Text.Json;
 using TMPro;
 
-public class CLUHandler:MonoBehaviour
+public partial class CLUHandler:MonoBehaviour
 {
     public static CLUHandler Instance { get; private set; }
     [SerializeField] 
@@ -33,8 +33,8 @@ public class CLUHandler:MonoBehaviour
     public void AnalyzeConversation(string prompt)
     {
         logContent = "";
-        string projectName = "HandsOn-project";
-        string deploymentName = "deploy1";
+        string projectName = "HandsOn-layer2";
+        string deploymentName = "Deploy2.1";
 
         var data = new
         {
@@ -64,8 +64,23 @@ public class CLUHandler:MonoBehaviour
         JsonElement conversationalTaskResult = result.RootElement;
         JsonElement conversationPrediction = conversationalTaskResult.GetProperty("result").GetProperty("prediction");
 
-        logContent += ($"Top intent: {conversationPrediction.GetProperty("topIntent").GetString()}");
+        var topIntent = conversationPrediction.GetProperty("topIntent").GetString();
+        logContent += ($"Top intent: {topIntent}");
+        switch (topIntent)
+        {
+            case "Spawn":
+                HandleSpawn(conversationPrediction);
+                break;
+            case "Delete":
+                // code block
+                break;
+            default:
+                // code block
+                break;
+        }
 
+
+        /*
         Debug.Log("Intents:");
         foreach (JsonElement intent in conversationPrediction.GetProperty("intents").EnumerateArray())
         {
@@ -73,7 +88,6 @@ public class CLUHandler:MonoBehaviour
             logContent += ($"Confidence: {intent.GetProperty("confidenceScore").GetSingle()}");
             logContent += ("");
         }
-
         logContent += ("Entities:");
         foreach (JsonElement entity in conversationPrediction.GetProperty("entities").EnumerateArray())
         {
@@ -97,12 +111,11 @@ public class CLUHandler:MonoBehaviour
                     }
                 }
             }
-        }
+        }*/
 
     }
     private void Update()
     {
         m_logTmp.text = logContent;
-        
     }
 }

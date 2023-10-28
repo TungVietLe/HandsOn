@@ -60,7 +60,7 @@ public class SpeechToTextHandler : MonoBehaviour
             if (result.Reason == ResultReason.RecognizedSpeech)
             {
                 newMessage = result.Text;
-                CLUHandler.Instance.AnalyzeConversation(newMessage);
+                CLUHandler.Instance.AnalyzeConversation(newMessage.ToLower());
             }
             else if (result.Reason == ResultReason.NoMatch)
             {
