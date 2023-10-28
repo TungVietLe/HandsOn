@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class Liquid : MonoBehaviour
 {
-    [HideInInspector]
-    public PhysicData PhysicData;
-    public int Density;
+    public int Density
+    {
+        get { return DB.Density[m_materialID]; }
+    }
+    [SerializeField]
+    private string m_materialID;
     private float m_originalVolume;
     private float m_bottomArea;
 
@@ -12,11 +15,17 @@ public class Liquid : MonoBehaviour
     {
         GetComponent<Collider>().isTrigger = true;
     }
+    public void setMaterial(string _id)
+    {
+        m_materialID = _id;
+        GetComponent<MeshRenderer>().material = (Material)Resources.Load($"Object.Material/{_id}");
+    }
     private void Start()
     {
+        PhysicHandler.Instance.LiquidObjects.Add(this);
+
         m_bottomArea = transform.lossyScale.x * transform.lossyScale.z;
         m_originalVolume = m_bottomArea * transform.lossyScale.y;
-        PhysicHandler.Instance.LiquidObjects.Add(this);
     }
     private float m_totalSubmergeVolume;
     public void AddSumergeVolume(float volumeToAdd)

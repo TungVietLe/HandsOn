@@ -4,15 +4,19 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Solid : MonoBehaviour
 {
-    public PhysicData PhysicData;
-    public int Density = 1000;
+    [SerializeField]
+    private string m_materialID;
+    public int Density
+    {
+        get { return DB.Density[m_materialID]; }
+    }
     public float Height
     {
         get { return transform.position.y; }
     }
     public float Volume
     {
-        get { return transform.lossyScale.x * transform.lossyScale.y * transform.lossyScale.z; }
+        get { return this.transform.lossyScale.x * transform.lossyScale.y * transform.lossyScale.z; }
     }
     public float Mass
     {
@@ -22,15 +26,7 @@ public class Solid : MonoBehaviour
     {
         get { return rb.mass * Physics.gravity.y; }
     }
-    public float PotentialEnergy
-    {
-        get { return Height * GravitationalForce; }
-    }
-    public float KineticEnergy
-    {
-        get { return 0.5f * Mass * Mathf.Pow(rb.velocity.y,2); }
-    }
-    private Rigidbody rb;
+    public Rigidbody rb;
     private Dictionary<string, Vector3> forces = new();
     public void AddForce(Vector3 forceToAdd, string id)
     {
@@ -43,9 +39,11 @@ public class Solid : MonoBehaviour
             forces.Add(id, forceToAdd);
         }
     }
-
-
-
+    public void setMaterial(string _id)
+    {
+        m_materialID = _id;
+        GetComponent<MeshRenderer>().material = (Material)Resources.Load($"Object.Material/{_id}");
+    }
 
     private void Start()
     {

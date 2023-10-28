@@ -807,7 +807,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b147a2f5417afc8448f76ddcfe0cf2c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_test: {fileID: 0}
   m_logTmp: {fileID: 1327026729}
 --- !u!114 &609435065
 MonoBehaviour:
@@ -1354,6 +1353,22 @@ PrefabInstance:
     - target: {fileID: 3761113440127130565, guid: 6952eeb6c0e3c8d4a8de3d54c6029839, type: 3}
       propertyPath: m_Name
       value: Bouyancy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5488375257638967955, guid: 6952eeb6c0e3c8d4a8de3d54c6029839, type: 3}
+      propertyPath: m_materialID
+      value: water
+      objectReference: {fileID: 0}
+    - target: {fileID: 5488375257638967955, guid: 6952eeb6c0e3c8d4a8de3d54c6029839, type: 3}
+      propertyPath: m_materialString
+      value: water
+      objectReference: {fileID: 0}
+    - target: {fileID: 7206278816343867796, guid: 6952eeb6c0e3c8d4a8de3d54c6029839, type: 3}
+      propertyPath: m_materialID
+      value: water
+      objectReference: {fileID: 0}
+    - target: {fileID: 7206278816343867796, guid: 6952eeb6c0e3c8d4a8de3d54c6029839, type: 3}
+      propertyPath: m_materialString
+      value: water
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

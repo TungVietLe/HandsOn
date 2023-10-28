@@ -1,18 +1,18 @@
+using System.Collections.Generic;
 using System.Text.Json;
-using Unity.VisualScripting;
+using System.Xml.Schema;
 using UnityEngine;
 
 public partial class CLUHandler
 {
-    [SerializeField] PhysicData m_test;
-
-    private GameObject nearestSpawn;
     private void Start()
     {
-        AnalyzeConversation("give me a weight made of water");
+        AnalyzeConversation("spawn a water weight, an iron weight, and an wood weight");
     }
     private void HandleSpawn(JsonElement conversationPrediction)
     {
+        List<string> totalObjectNames = new();
+        List<string> totalObjectMaterials = new();
         foreach (JsonElement entity in conversationPrediction.GetProperty("entities").EnumerateArray())
         {
             var fieldName = entity.GetProperty("category").GetString();
@@ -21,23 +21,16 @@ public partial class CLUHandler
             switch (fieldName)
             {
                 case "Object.Name":
-                    nearestSpawn = (GameObject)Instantiate(resource);
+                    totalObjectNames.Add(entity.GetProperty("text").GetString());
                     break;
                 case "Object.Material":
-                    if (nearestSpawn == null)
-                    {
-                        nearestSpawn = (GameObject) Instantiate(Resources.Load("Object.Name/weight"));
-                    }
-                    if (nearestSpawn.TryGetComponent(out MeshRenderer meshRen))
-                    {
-                        meshRen.material = resource as Material;
-                        nearestSpawn = null;
-                    }
+                    totalObjectMaterials.Add(entity.GetProperty("text").GetString());
                     break;
                 default:
                     // code block
                     break;
             }
+
 
             logContent += ($"Text: {entity.GetProperty("text").GetString()}");
             logContent += ($"Offset: {entity.GetProperty("offset").GetInt32()}");
@@ -58,6 +51,26 @@ public partial class CLUHandler
                         logContent += ("");
                     }
                 }
+            }
+        }
+
+
+        for (int i=0; i<totalObjectMaterials.Count; i++)
+        {
+            GameObject newObj;
+            if (totalObjectNames.Count <= i)
+            {
+                var model = Resources.Load($"Object.Name/weight");
+                newObj = (GameObject)Instantiate(model);
+            }
+            else
+            {
+                var model = Resources.Load($"Object.Name/{totalObjectNames[i]}");
+                newObj = (GameObject) Instantiate(model);
+            }
+            if (newObj.TryGetComponent(out Solid solid))
+            {
+                solid.setMaterial(totalObjectMaterials[i]);
             }
         }
     }
