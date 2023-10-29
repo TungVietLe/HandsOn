@@ -63,7 +63,7 @@ public class ARDrawManager : MonoBehaviour
             if(touch.phase == TouchPhase.Began)
             {
                 OnDraw?.Invoke();
-                var anchor = anchorManager.gameObject.AddComponent<ARAnchor>();
+                /*var anchor = anchor.AddComponent<ARAnchor>();
                 //ARAnchor anchor = anchorManager.AddAnchor(new Pose(touchPosition, Quaternion.identity));
                 if (anchor == null) 
                     Debug.LogError("Error creating reference point");
@@ -71,11 +71,11 @@ public class ARDrawManager : MonoBehaviour
                 {
                     anchors.Add(anchor);
                     //ARDebugManager.Instance.LogInfo($"Anchor created & total of {anchors.Count} anchor(s)");
-                }
+                }*/
 
                 ARLine line = new ARLine(lineSettings);
                 Lines.Add(touch.fingerId, line);
-                line.AddNewLineRenderer(transform, anchor, touchPosition);
+                line.AddNewLineRenderer(transform, null, touchPosition);
             }
             else if(touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
             {

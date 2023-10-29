@@ -531,6 +531,7 @@ GameObject:
   - component: {fileID: 512376513}
   - component: {fileID: 512376510}
   - component: {fileID: 512376514}
+  - component: {fileID: 512376515}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -629,6 +630,36 @@ MonoBehaviour:
       m_Calls: []
   anchorManager: {fileID: 512376513}
   arCamera: {fileID: 1527917917}
+--- !u!114 &512376515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512376502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b60fa2120007c324c8c8c108bd812ef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnInitialized:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1320911314}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnRetarted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &561496700
 GameObject:
   m_ObjectHideFlags: 0
