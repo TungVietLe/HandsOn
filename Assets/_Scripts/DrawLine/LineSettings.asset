@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LineSettings
   m_EditorClassIdentifier: 
   lineTagName: Line
-  startColor: {r: 1, g: 0, b: 0.021799088, a: 1}
-  endColor: {r: 1, g: 0, b: 0.021799088, a: 1}
+  startColor: {r: 1, g: 0, b: 0.32317305, a: 1}
+  endColor: {r: 1, g: 0.71737784, b: 0, a: 1}
   startWidth: 0.01
   endWidth: 0.01
   distanceFromCamera: 0.3

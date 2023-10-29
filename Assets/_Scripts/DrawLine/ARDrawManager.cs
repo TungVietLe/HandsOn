@@ -29,7 +29,7 @@ public class ARDrawManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        AllowDraw(true);
+        AllowDraw(false);
     }
 
     void Update ()
@@ -44,6 +44,10 @@ public class ARDrawManager : MonoBehaviour
     public void AllowDraw(bool isAllow)
     {
         CanDraw = isAllow;
+    }
+    public void ToggleDraw()
+    {
+        CanDraw = !CanDraw;
     }
 
 
