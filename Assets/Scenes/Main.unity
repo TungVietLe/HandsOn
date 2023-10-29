@@ -1370,6 +1370,10 @@ PrefabInstance:
       propertyPath: m_materialString
       value: water
       objectReference: {fileID: 0}
+    - target: {fileID: 8762399618535126017, guid: 6952eeb6c0e3c8d4a8de3d54c6029839, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6327838291158519917, guid: 6952eeb6c0e3c8d4a8de3d54c6029839, type: 3}

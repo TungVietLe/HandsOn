@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Text.Json;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public partial class CLUHandler
 {
     private void Start()
     {
-        AnalyzeConversation("spawn a water container, an iron weight, and an mercury container");
+        AnalyzeConversation("spawn a water container, an iron weight, and an mercury container, plus another mercury container");
     }
     private void HandleSpawn(JsonElement conversationPrediction)
     {
@@ -55,9 +56,19 @@ public partial class CLUHandler
             }
         }
 
-        foreach(var liquidMat in totalLiquidMaterials)
+        var allContainers = FindObjectsOfType<Liquid>();
+        for(int i =0; i<totalLiquidMaterials.Count;i++)
         {
-            GameObject.FindAnyObjectByType<Liquid>().setMaterial(liquidMat);
+            var liquidMat = totalLiquidMaterials[i];
+            if (i<allContainers.Length)
+            {
+                allContainers[i].setMaterial(liquidMat);  
+            }
+            else
+            {
+                var newContainer = (GameObject) Instantiate(Resources.Load("Object.Name/container"));
+                newContainer.GetComponentInChildren<Liquid>().setMaterial(liquidMat);
+            }
         }
     }
     private void TryGetExtraInfo(JsonElement entity, out string extraInfo)
