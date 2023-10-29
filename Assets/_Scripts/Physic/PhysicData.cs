@@ -42,7 +42,6 @@ public class PhysicData:MonoBehaviour
         get { return rb.mass * Physics.gravity.y; }
     }
     public Rigidbody rb;
-    private Transform transform;
 
     public void Init( Transform _transform, string _materialString="", Rigidbody _rb = null)
     {
