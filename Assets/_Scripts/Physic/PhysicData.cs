@@ -67,7 +67,7 @@ public class DB
             {"water",   1000},
             {"milk",    1050 },
             {"coal",    1400},
-            {"aluminium",2700},
+            {"aluminum",2700},
             {"iron",    7800},
             {"mercury", 13500},
         };

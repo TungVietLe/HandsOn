@@ -6,7 +6,7 @@ public partial class CLUHandler
 {
     private void Start()
     {
-        AnalyzeConversation("spawn a water container, an iron weight, and an mercury container, plus another mercury container");
+        AnalyzeConversation("spawn a oil container, wood, plastic, aluminum weight, and an mercury container");
     }
     private void HandleSpawn(JsonElement conversationPrediction)
     {
@@ -21,6 +21,7 @@ public partial class CLUHandler
             switch (eCatergory)
             {
                 case "Object.Name":
+                    if (listKey == "container") break;
                     if (listKey != null) totalObjectNames.Add(listKey);
                     else totalObjectNames.Add(entity.GetProperty("text").GetString());
                     break;
