@@ -6,7 +6,7 @@ public partial class CLUHandler
 {
     private void Start()
     {
-        AnalyzeConversation("spawn a wood weight, an iron weight, and an mercury container");
+        AnalyzeConversation("spawn a wood object, an iron weight, and an mercury container");
     }
     private void HandleSpawn(JsonElement conversationPrediction)
     {

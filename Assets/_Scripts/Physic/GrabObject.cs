@@ -42,7 +42,7 @@ public class GrabObject : MonoBehaviour
                     direction = cam.transform.forward
                 };
                 Physics.Raycast(ray, out RaycastHit hit);
-                if (hit.collider != null && !hit.collider.isTrigger)
+                if (hit.collider != null && !hit.collider.isTrigger) //picked up
                 {
                     orginalTag = hit.transform.tag;
                     distanceOnPickUp = hit.distance;
@@ -50,19 +50,21 @@ public class GrabObject : MonoBehaviour
                     objectBeingGrabbed = hit.transform;
                     m_aim.DOKill();
                     m_aim.DOFade(0, 0.1f);
+                    EnvironmentConfig.Paused = true;
                 }
             }
         }
-        else if (objectBeingGrabbed != null)
+        else if (objectBeingGrabbed != null) // dropped
         {
             objectBeingGrabbed.tag = orginalTag;
             objectBeingGrabbed = null;
             orginalTag = null;
             distanceOnPickUp = 0;
+            EnvironmentConfig.Paused = false;
         }
 
 
-        if (objectBeingGrabbed != null)
+        if (objectBeingGrabbed != null)//while picking up
         {
             objectBeingGrabbed.position = cam.transform.position + cam.transform.forward * distanceOnPickUp;
         }

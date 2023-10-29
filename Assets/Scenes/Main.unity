@@ -1371,7 +1371,9 @@ PrefabInstance:
       value: water
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6327838291158519917, guid: 6952eeb6c0e3c8d4a8de3d54c6029839, type: 3}
+    - {fileID: 3745292862845030832, guid: 6952eeb6c0e3c8d4a8de3d54c6029839, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6952eeb6c0e3c8d4a8de3d54c6029839, type: 3}

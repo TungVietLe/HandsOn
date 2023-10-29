@@ -56,6 +56,7 @@ public class Solid : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (EnvironmentConfig.Paused) return;
         AddForce(new Vector3(0,GravitationalForce,0), "gravity");
 
         var net = new Vector3();
@@ -70,6 +71,7 @@ public class Solid : MonoBehaviour
 
     private void OnRenderObject()
     {
+        if (!EnvironmentConfig.ShowGizmoz) return;
         if (m_lineMat == null) return;
         m_lineMat.SetPass(0);
         GL.PushMatrix();
