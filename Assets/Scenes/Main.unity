@@ -530,6 +530,7 @@ GameObject:
   - component: {fileID: 512376508}
   - component: {fileID: 512376513}
   - component: {fileID: 512376510}
+  - component: {fileID: 512376514}
   m_Layer: 0
   m_Name: AR Session Origin
   m_TagString: Untagged
@@ -610,6 +611,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AnchorPrefab: {fileID: 0}
+--- !u!114 &512376514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512376502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2451fce05c46745ac04025c5c03304, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineSettings: {fileID: 11400000, guid: 94adc66f2c50a0a42b7c4c6757b3db18, type: 2}
+  OnDraw:
+    m_PersistentCalls:
+      m_Calls: []
+  anchorManager: {fileID: 512376513}
+  arCamera: {fileID: 1527917917}
 --- !u!1 &561496700
 GameObject:
   m_ObjectHideFlags: 0
