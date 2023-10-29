@@ -61,9 +61,11 @@ public class DB
     public static Dictionary<string, int> Density = new Dictionary<string, int>
         {
             {"wood",    680},
+            {"oil",     700 },
             {"ice",     910},
             {"plastic", 940},
             {"water",   1000},
+            {"milk",    1050 },
             {"coal",    1400},
             {"aluminium",2700},
             {"iron",    7800},

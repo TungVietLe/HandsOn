@@ -1354,6 +1354,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bouyancy
       objectReference: {fileID: 0}
+    - target: {fileID: 3921400813055705083, guid: 6952eeb6c0e3c8d4a8de3d54c6029839, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 78dc373d7188bc64e98a3482df1ca360, type: 2}
     - target: {fileID: 5488375257638967955, guid: 6952eeb6c0e3c8d4a8de3d54c6029839, type: 3}
       propertyPath: m_materialID
       value: water
