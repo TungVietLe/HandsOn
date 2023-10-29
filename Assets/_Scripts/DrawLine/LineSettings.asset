@@ -21,7 +21,7 @@ MonoBehaviour:
   defaultMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   cornerVertices: 5
   endCapVertices: 5
-  minDistanceBeforeNewPoint: 0.01
+  minDistanceBeforeNewPoint: 0.003
   allowSimplification: 0
   tolerance: 0.001
   applySimplifyAfterPoints: 20
