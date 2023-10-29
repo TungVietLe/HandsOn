@@ -1,61 +1,42 @@
 using System.Collections.Generic;
 using System.Text.Json;
-using System.Xml.Schema;
 using UnityEngine;
 
 public partial class CLUHandler
 {
     private void Start()
     {
-        AnalyzeConversation("spawn a water weight, an iron weight, and an wood weight");
+        AnalyzeConversation("spawn a wood weight, an iron weight, and an mercury weight");
     }
     private void HandleSpawn(JsonElement conversationPrediction)
     {
         List<string> totalObjectNames = new();
-        List<string> totalObjectMaterials = new();
+        List<string> totalSolidMaterials = new();
+        List<string> totalLiquidMaterials = new();
         foreach (JsonElement entity in conversationPrediction.GetProperty("entities").EnumerateArray())
         {
-            var fieldName = entity.GetProperty("category").GetString();
-            var resource = Resources.Load($"{fieldName}/{entity.GetProperty("text").GetString()}");
+            var eCatergory = entity.GetProperty("category").GetString();
 
-            switch (fieldName)
+            TryGetExtraInfo(entity, out string listKey);
+            switch (eCatergory)
             {
                 case "Object.Name":
-                    totalObjectNames.Add(entity.GetProperty("text").GetString());
+                    if (listKey != null) totalObjectNames.Add(listKey);
+                    else totalObjectNames.Add(entity.GetProperty("text").GetString());
                     break;
                 case "Object.Material":
-                    totalObjectMaterials.Add(entity.GetProperty("text").GetString());
+                    if (listKey == "liquid") totalLiquidMaterials.Add(entity.GetProperty("text").GetString());
+                    else totalSolidMaterials.Add(entity.GetProperty("text").GetString());
                     break;
                 default:
                     // code block
                     break;
             }
 
-
-            logContent += ($"Text: {entity.GetProperty("text").GetString()}");
-            logContent += ($"Offset: {entity.GetProperty("offset").GetInt32()}");
-            logContent += ($"Length: {entity.GetProperty("length").GetInt32()}");
-            logContent += ($"Confidence: {entity.GetProperty("confidenceScore").GetSingle()}");
-            logContent += ("");
-
-
-            if (entity.TryGetProperty("resolutions", out JsonElement resolutions))
-            {
-                foreach (JsonElement resolution in resolutions.EnumerateArray())
-                {
-                    if (resolution.GetProperty("resolutionKind").GetString() == "DateTimeResolution")
-                    {
-                        logContent += ($"Datetime Sub Kind: {resolution.GetProperty("dateTimeSubKind").GetString()}");
-                        logContent += ($"Timex: {resolution.GetProperty("timex").GetString()}");
-                        logContent += ($"Value: {resolution.GetProperty("value").GetString()}");
-                        logContent += ("");
-                    }
-                }
-            }
         }
 
 
-        for (int i=0; i<totalObjectMaterials.Count; i++)
+        for (int i=0; i<totalSolidMaterials.Count; i++)
         {
             GameObject newObj;
             if (totalObjectNames.Count <= i)
@@ -70,8 +51,25 @@ public partial class CLUHandler
             }
             if (newObj.TryGetComponent(out Solid solid))
             {
-                solid.setMaterial(totalObjectMaterials[i]);
+                solid.setMaterial(totalSolidMaterials[i]);
             }
         }
+
+        foreach(var liquidMat in totalLiquidMaterials)
+        {
+            GameObject.FindAnyObjectByType<Liquid>().setMaterial(liquidMat);
+        }
+    }
+    private void TryGetExtraInfo(JsonElement entity, out string extraInfo)
+    {
+        if (entity.TryGetProperty("extraInformation", out JsonElement extras))
+        {
+            foreach (JsonElement extra in extras.EnumerateArray())
+            {
+                extraInfo = extra.GetProperty("key").ToString();
+                return;
+            }
+        }
+        extraInfo = null;
     }
 }
