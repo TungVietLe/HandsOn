@@ -46,7 +46,6 @@ public class PhysicData:MonoBehaviour
     public void Init( Transform _transform, string _materialString="", Rigidbody _rb = null)
     {
         rb = _rb;
-        transform = _transform;
         MaterialString = _materialString;
 
         if (rb == null) return;
