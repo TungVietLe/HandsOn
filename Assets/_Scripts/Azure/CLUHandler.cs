@@ -34,7 +34,7 @@ public partial class CLUHandler:MonoBehaviour
     {
         logContent = "";
         string projectName = "HandsOn-layer2";
-        string deploymentName = "Deploy2.1";
+        string deploymentName = "Deploy2.3";
 
         var data = new
         {
@@ -71,11 +71,11 @@ public partial class CLUHandler:MonoBehaviour
             case "Spawn":
                 HandleSpawn(conversationPrediction);
                 break;
-            case "Delete":
-                // code block
+            case "Adjust":
+                HandleAdjust(conversationPrediction);
                 break;
             default:
-                // code block
+                print("No Intent predicted");
                 break;
         }
 

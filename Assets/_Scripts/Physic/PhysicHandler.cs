@@ -20,18 +20,21 @@ public class PhysicHandler : MonoBehaviour
     [HideInInspector]public List<Liquid> LiquidObjects = new();
     private void FixedUpdate()
     {
-        foreach (Liquid fluid in LiquidObjects) 
+        foreach(var solid in SolidObjects)
         {
-            foreach(var obj in SolidObjects)
+            if (solid.CompareTag("Hold")) continue;
+            Vector3 archimedesForce = new();
+            foreach (Liquid fluid in LiquidObjects) 
             {
-                if (obj.CompareTag("Hold")) continue;
-                var submergeVol = CalculateIntersectionVolume(obj.transform, fluid.transform);
-                if (submergeVol == 0f) continue;
-                Vector3 archimedesForce = new (0, -submergeVol * fluid.Density * Physics.gravity.y,0);
+                var submergeVol = CalculateIntersectionVolume(solid.transform, fluid.transform);
+                archimedesForce += new Vector3(0, -submergeVol * fluid.Density * Physics.gravity.y,0);
                 fluid.AddSumergeVolume(submergeVol);
-                obj.AddForce(archimedesForce, "archimedes");
             }
-        fluid.UpdateFluidHeight();
+            solid.AddForce(archimedesForce, "archimedes");
+        }
+        foreach (Liquid fluid in LiquidObjects)
+        {
+            fluid.UpdateFluidHeight();
         }
     }
 

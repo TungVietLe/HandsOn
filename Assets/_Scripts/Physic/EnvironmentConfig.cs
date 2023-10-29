@@ -6,12 +6,12 @@ public class EnvironmentConfig
         get { 
             return Physics.gravity;
         }
-        protected set {
+        set {
             Physics.gravity = value;
         }
     }
     public static float temperature = 300; //kelvin
     public static float linearDrag = 3;
     public static bool Paused = false;
-    public static bool ShowGizmoz = true;
+    public static bool ShowGizmoz = false;
 }

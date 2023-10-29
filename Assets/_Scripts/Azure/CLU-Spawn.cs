@@ -4,12 +4,13 @@ using UnityEngine;
 
 public partial class CLUHandler
 {
-    private void Start()
+    /*private void Start()
     {
         AnalyzeConversation("spawn a oil container, wood, plastic, aluminum weight, and an mercury container");
-    }
+    }*/
     private void HandleSpawn(JsonElement conversationPrediction)
     {
+        print("launch spawn");
         List<string> totalObjectNames = new();
         List<string> totalSolidMaterials = new();
         List<string> totalLiquidMaterials = new();
@@ -77,8 +78,12 @@ public partial class CLUHandler
         {
             foreach (JsonElement extra in extras.EnumerateArray())
             {
-                extraInfo = extra.GetProperty("key").ToString();
-                return;
+                if (extra.TryGetProperty("key", out JsonElement value))
+                {
+                    extraInfo= value.ToString();    
+                    print("afd"+extraInfo);
+                    return;
+                }
             }
         }
         extraInfo = null;
