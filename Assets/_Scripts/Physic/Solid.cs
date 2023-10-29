@@ -65,6 +65,7 @@ public class Solid : MonoBehaviour
             net += force;
         }
         rb.AddForce(net);
+        forces.Clear();
     }
 
     [SerializeField] Material m_lineMat;
