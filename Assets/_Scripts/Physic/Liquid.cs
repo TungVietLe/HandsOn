@@ -23,7 +23,7 @@ public class Liquid : MonoBehaviour
     private void Start()
     {
         PhysicHandler.Instance.LiquidObjects.Add(this);
-
+        transform.parent = null;
         m_bottomArea = transform.lossyScale.x * transform.lossyScale.z;
         m_originalVolume = m_bottomArea * transform.lossyScale.y;
     }
