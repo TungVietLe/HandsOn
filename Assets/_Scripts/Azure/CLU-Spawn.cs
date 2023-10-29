@@ -6,7 +6,7 @@ public partial class CLUHandler
 {
     private void Start()
     {
-        AnalyzeConversation("spawn a wood object, an iron weight, and an mercury container");
+        AnalyzeConversation("spawn a water container, an iron weight, and an mercury container");
     }
     private void HandleSpawn(JsonElement conversationPrediction)
     {
@@ -35,7 +35,7 @@ public partial class CLUHandler
 
         }
 
-
+        print($"{totalObjectNames.Count} {totalSolidMaterials.Count} {totalLiquidMaterials.Count}");
         for (int i=0; i<totalSolidMaterials.Count; i++)
         {
             GameObject newObj;

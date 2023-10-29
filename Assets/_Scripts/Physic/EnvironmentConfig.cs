@@ -12,6 +12,6 @@ public class EnvironmentConfig
     }
     public static float temperature = 300; //kelvin
     public static float linearDrag = 3;
-    public static bool Paused = true;
+    public static bool Paused = false;
     public static bool ShowGizmoz = true;
 }
