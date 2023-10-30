@@ -47,3 +47,6 @@ Connected Cognitive Search and SQL database.
 Code 3D physic simulations from scratch using Unity C#
 Develop for Android AR Core
 
+# Many challenges to come
+![Screenshot 2023-10-30 140037](https://github.com/TungVietLe/HandsOn/assets/99946449/d3d547d4-d10c-4dba-bd61-728abf012ea6)
+The model is still improving and hasn't generalized things well enough. Currently, the project is just a prototype with some simple requests. 
