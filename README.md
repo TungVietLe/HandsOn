@@ -51,3 +51,21 @@ Develop for Android AR Core
 # Many challenges to come
 ![Screenshot 2023-10-30 140037](https://github.com/TungVietLe/HandsOn/assets/99946449/d3d547d4-d10c-4dba-bd61-728abf012ea6)
 The model is still improving and hasn't generalized things well enough. Currently, the project is just a prototype with some simple requests. 
+
+# Future goals
+1. AI Real-time feedback
+a. Anticipated use case:
+i. “Why is my spectrometer not giving accurate readings?”
+- Real-Time Feedback: Hands On can suggest checking the alignment,
+the quality of the light source, or the calibration of the spectrometer.
+ii. "Is it safe to heat this substance with the Bunsen burner?"
+- Real-Time Feedback: Hands On can provide safety guidelines,
+including the substance's properties and suitable temperature ranges
+for heating.
+
+2. AR Multi-user in the same environment / Tools recognition
+using computer vision
+- Enhance collaboration that allows students to work together and share
+experiences.
+- Allow teachers to demonstrate how the experiment should be conducted.
+- Import tools into the simulation.
