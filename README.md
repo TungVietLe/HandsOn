@@ -1,4 +1,4 @@
-# Hands On AI Argumented Lab
+# Hands On AI Argumented Lab Demo
 Laboratory equipment are expensive. Learning on 2D blackboard is unengaging. Hands On is AR simulation equipped with AI for both teachers & students to interact, experiment, and make mistakes freely.
 
 ![Screenshot 2023-10-30 094619](https://github.com/TungVietLe/HandsOn/assets/99946449/417254ae-a0df-4f6d-afbb-72be4eff66b2)
