@@ -53,15 +53,15 @@ Develop for Android AR Core
 It's just a super early state. The model is still improving and hasn't generalized things well enough. Currently, the project is just a prototype with some simple requests. 
 
 # Future goals
-1. AI Real-time feedback
-a. Anticipated use case:
-i. “Why is my spectrometer not giving accurate readings?”
+1. AI Real-time feedback\
+a. Anticipated use case:\
+i. “Why is my spectrometer not giving accurate readings?”\
 - Real-Time Feedback: Hands On can suggest checking the alignment,
-the quality of the light source, or the calibration of the spectrometer.
-ii. "Is it safe to heat this substance with the Bunsen burner?"
+the quality of the light source, or the calibration of the spectrometer.\
+ii. "Is it safe to heat this substance with the Bunsen burner?"\
 - Real-Time Feedback: Hands On can provide safety guidelines,
 including the substance's properties and suitable temperature ranges
-for heating.
+for heating.\
 
 2. AR Multi-user in the same environment / Tools recognition
 using computer vision
