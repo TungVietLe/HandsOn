@@ -31,7 +31,7 @@ world is your infinite, limitless canvas.
 - Collaboration on the same AR environment
 - Tool recognition using computer vision
 - IOS ARKit development
-- Classroom 
+- Classroom / lab safety practice
 
 # Inspiration
 I remember the first time I went to my physics lab during my high school years to experiment with electronic circuits. The equipment looks nothing familiar to me even though I have been studying it for a year. Turn out I was working with 2D symbol drawings the whole time, without touching or experiencing myself.
