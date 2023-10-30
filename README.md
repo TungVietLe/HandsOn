@@ -27,10 +27,11 @@ iv. Users are also able to take notes anywhere in the environment, so the
 world is your infinite, limitless canvas.
 
 # What's next for Hands On
-Real-time feedback
-Collaboration on the same AR environment
-Tool recognition using computer vision
-IOS ARKit development
+- Real-time AI feedback
+- Collaboration on the same AR environment
+- Tool recognition using computer vision
+- IOS ARKit development
+- Classroom 
 
 # Inspiration
 I remember the first time I went to my physics lab during my high school years to experiment with electronic circuits. The equipment looks nothing familiar to me even though I have been studying it for a year. Turn out I was working with 2D symbol drawings the whole time, without touching or experiencing myself.
