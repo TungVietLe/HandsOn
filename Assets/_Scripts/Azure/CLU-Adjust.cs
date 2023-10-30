@@ -2,12 +2,14 @@ using System.Text.Json;
 using UnityEngine;
 public partial class CLUHandler
 {
-    private void Start()
+    /*private void Start()
     {
         AnalyzeConversation("set gravity to 10");
         AnalyzeConversation("turn on gizmos");
         AnalyzeConversation("spawn a oil container, wood, plastic, aluminum weight, and an mercury container");
-    }
+    }*/
+    private bool shouldRunAdjust = false;
+    private JsonElement adjustPredictionToRun = new();
     private void HandleAdjust(JsonElement conversationPrediction)
     {
         foreach(JsonElement entity in conversationPrediction.GetProperty("entities").EnumerateArray())

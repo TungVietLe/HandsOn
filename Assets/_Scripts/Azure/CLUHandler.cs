@@ -69,10 +69,12 @@ public partial class CLUHandler:MonoBehaviour
         switch (topIntent)
         {
             case "Spawn":
-                HandleSpawn(conversationPrediction);
+                shouldRunSpawn = true;
+                spawnPredictionToRun = conversationPrediction.Clone();
                 break;
             case "Adjust":
-                HandleAdjust(conversationPrediction);
+                shouldRunAdjust = true;
+                adjustPredictionToRun = conversationPrediction.Clone();
                 break;
             default:
                 print("No Intent predicted");
@@ -117,5 +119,15 @@ public partial class CLUHandler:MonoBehaviour
     private void Update()
     {
         m_logTmp.text = logContent;
+        if(shouldRunSpawn)
+        {
+            HandleSpawn(spawnPredictionToRun);
+            shouldRunSpawn = false;
+        }
+        if (shouldRunAdjust)
+        {
+            HandleAdjust(adjustPredictionToRun);
+            shouldRunAdjust = false;
+        }
     }
 }

@@ -8,6 +8,10 @@ public partial class CLUHandler
     {
         AnalyzeConversation("spawn a oil container, wood, plastic, aluminum weight, and an mercury container");
     }*/
+    public static Transform WorkSpaceParent;
+    public static Vector3 SpawnPos;
+    private bool shouldRunSpawn = false;
+    private JsonElement spawnPredictionToRun = new();
     private void HandleSpawn(JsonElement conversationPrediction)
     {
         print("launch spawn");
@@ -44,12 +48,12 @@ public partial class CLUHandler
             if (totalObjectNames.Count <= i)
             {
                 var model = Resources.Load($"Object.Name/weight");
-                newObj = (GameObject)Instantiate(model);
+                newObj = (GameObject)Instantiate(model, SpawnPos, Quaternion.identity, WorkSpaceParent);
             }
             else
             {
                 var model = Resources.Load($"Object.Name/{totalObjectNames[i]}");
-                newObj = (GameObject) Instantiate(model);
+                newObj = (GameObject) Instantiate(model, SpawnPos, Quaternion.identity, WorkSpaceParent);
             }
             if (newObj.TryGetComponent(out Solid solid))
             {
@@ -67,7 +71,7 @@ public partial class CLUHandler
             }
             else
             {
-                var newContainer = (GameObject) Instantiate(Resources.Load("Object.Name/container"));
+                var newContainer = (GameObject) Instantiate(Resources.Load("Object.Name/container"), WorkSpaceParent);
                 newContainer.GetComponentInChildren<Liquid>().setMaterial(liquidMat);
             }
         }
@@ -81,7 +85,6 @@ public partial class CLUHandler
                 if (extra.TryGetProperty("key", out JsonElement value))
                 {
                     extraInfo= value.ToString();    
-                    print("afd"+extraInfo);
                     return;
                 }
             }

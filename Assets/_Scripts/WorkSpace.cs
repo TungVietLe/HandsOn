@@ -9,5 +9,6 @@ public class WorkSpace : MonoBehaviour
     private void Start()
     {
         m_tableQuad.localScale = new Vector2(Width, Height);
+        CLUHandler.WorkSpaceParent = transform;
     }
 }

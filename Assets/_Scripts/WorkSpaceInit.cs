@@ -78,6 +78,9 @@ public class WorkSpaceInit : MonoBehaviour
         workspace.transform.LookAt((point3+point2)*0.5f);
         workspace.Height = (point1 - point2).magnitude;
         workspace.Width = (point2 - point3).magnitude;
+
+        var middleDiag = (point1 + point3) * 0.5f;
+        CLUHandler.SpawnPos =new Vector3(middleDiag.x, middleDiag.y + 1, middleDiag.z);
     }
     public void OnPointerDown(BaseEventData data)
     {
