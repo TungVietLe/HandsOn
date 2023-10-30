@@ -8,6 +8,24 @@ Laboratory equipment are expensive. Learning on 2D blackboard is unengaging. Han
 - Demo Use: https://youtu.be/0ZqBgqMGOlc?si=09HIryc_1vLpYP-l
 - Demo Notes Drawing: https://youtu.be/-qrMq-FZTkg?si=WSMF8oVQxwj4frcs
 
+# Interacting with the environment using natural language
+a. Speak to Hands On:
+- “I need a weight[object] made of iron[material] to conduct a buoyancy
+force experiment”.
+- “Change the simulation gravity[field] to the moon’s gravity[value]”.
+- “Set the height[field] of liquid[target] to 57cm[value]”.
+- “Spawn something to measure length[description]”.
+
+b. Best Practices:
+i. It’s good to keep it concise about what your intentions are.
+ii. You can ask Hands On to assist you with details. Example: “Show me
+the forces analysis of objects.”
+iii. Beside speech interaction, you can also interact with the simulation
+using real-world physical movement. Example: “grab object, move
+object around.”
+iv. Users are also able to take notes anywhere in the environment, so the
+world is your infinite, limitless canvas.
+
 # What's next for Hands On
 Real-time feedback
 Collaboration on the same AR environment
