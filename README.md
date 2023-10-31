@@ -28,7 +28,7 @@ world is your infinite, limitless canvas.
 
 # What's next for Hands On
 - Real-time AI feedback
-- Collaboration on the same AR environment
+- Multi User Collaboration on the same AR environment
 - Tool recognition using computer vision
 - IOS ARKit development
 - Classroom / lab safety practice
