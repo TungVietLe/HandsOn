@@ -1,4 +1,4 @@
-Creator: Tung Viet Le
+### Creator: Tung Viet Le
 
 # Hands On AI Argumented Lab Demo
 Laboratory equipment are expensive. Learning on 2D blackboard is unengaging. Aiming to make laboratories accessible to students around the world; Helping teachers to make lesson more engaging. Hands On is AR simulation equipped with AI for both teachers & students to interact, experiment, and make mistakes freely.
