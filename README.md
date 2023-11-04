@@ -1,5 +1,6 @@
 ### Creator: Tung Viet Le
-### PLEASES DON'T DO THIS: After publishing this Github repo, I saw that my Azure credit was significantly dropped, resulting in Speech API error. This might be due to bad people taking advantage of my keys and endpoints, which are hard coded (though bad practice but due to time constrain). I'm trying to fix it so that the speech-to-text will work again. 
+### Waring: please don't do this
+After publishing this Github repo, I saw that my Azure credit was significantly dropped, resulting in Speech API deny. This might be due to bad people taking advantage of my Azure keys and endpoints, which are hard coded (though bad practice but due to time constrain). I'm trying to fix it so that the speech-to-text will work again. 
 
 
 
