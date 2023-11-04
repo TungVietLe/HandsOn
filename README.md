@@ -1,4 +1,7 @@
 ### Creator: Tung Viet Le
+### PLEASES DON'T DO THIS: After publishing this Github repo, I saw that my Azure credit was significantly dropped, resulting in Speech API error. This might be due to bad people taking advantage of my keys and endpoints, which are hard coded (though bad practice but due to time constrain). I'm trying to fix it so that the speech-to-text will work again. 
+
+
 
 # Hands On AI Argumented Lab Demo
 Laboratory equipment are expensive. Learning on 2D blackboard is unengaging. Aiming to make laboratories accessible to students around the world; Helping teachers to make lesson more engaging. Hands On is AR simulation equipped with AI for both teachers & students to interact, experiment, and make mistakes freely.
