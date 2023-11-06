@@ -11,8 +11,11 @@ Laboratory equipment are expensive. Learning on 2D blackboard is unengaging. Aim
 
 
 # Video
-- Demo Use: https://youtu.be/0ZqBgqMGOlc?si=09HIryc_1vLpYP-l
-- Demo Notes Drawing: https://youtu.be/-qrMq-FZTkg?si=WSMF8oVQxwj4frcs
+### Demo Use: https://youtu.be/0ZqBgqMGOlc?si=09HIryc_1vLpYP-l
+### Demo Notes Drawing: https://youtu.be/-qrMq-FZTkg?si=WSMF8oVQxwj4frcs
+
+![Group 3](https://github.com/TungVietLe/HandsOn/assets/99946449/73a44b9e-21be-490c-972d-8c47ef39c58c)
+<em>Note: Suggested UI (not developed yet).<em>
 
 # Interacting with the environment using natural language
 a. Speak to Hands On:
