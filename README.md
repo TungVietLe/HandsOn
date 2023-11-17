@@ -4,7 +4,7 @@ After publishing this Github repo, I saw that my Azure credit was significantly 
 
 # Docs
 
-[ADTs docs](https://github.com/TungVietLe/HandsOn/blob/main/ADT.md)
+[docs](https://github.com/TungVietLe/HandsOn/blob/main/ADT.md)
 
 
 # Hands On AI Argumented Lab Demo
