@@ -1,3 +1,6 @@
+### This Docs is still under development
+
+
 ### Class `SpeechToTextHandler`
 
 Public Attributes (this will be soon changed to getter and setter): 
