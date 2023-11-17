@@ -2,6 +2,9 @@
 ### Waring: please don't do this
 After publishing this Github repo, I saw that my Azure credit was significantly dropped, resulting in Speech API deny. This might be due to bad people taking advantage of my Azure keys and endpoints, which are hard coded (though bad practice but due to time constrain). I'm trying to fix it so that the speech-to-text will work again. 
 
+# Docs
+
+[ADTs docs](https://github.com/TungVietLe/HandsOn/blob/main/ADT.md)
 
 
 # Hands On AI Argumented Lab Demo
