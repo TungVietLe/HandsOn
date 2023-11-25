@@ -1,10 +1,12 @@
-### Creator: Tung Viet Le
-### Waring: please don't do this
-After publishing this Github repo, I saw that my Azure credit was significantly dropped, resulting in Speech API deny. This might be due to bad people taking advantage of my Azure keys and endpoints, which are hard coded (though bad practice but due to time constrain). I'm trying to fix it so that the speech-to-text will work again. 
+### Notice of possible occurrence: 
+After publishing this Github repo, I saw that my Azure credit was significantly dropped, resulting in Speech API deny. This might be due to bad people taking advantage of my Azure keys and endpoints, which are hard coded (although a bad practice but due to time constrain). I'm trying to fix it so that the speech-to-text will work again. 
 
 # Docs
 
-[docs](https://github.com/TungVietLe/HandsOn/blob/main/ADT.md)
+Official Docs _(coming soon)_
+
+[class ADT](https://github.com/TungVietLe/HandsOn/blob/main/ADT.md)
+
 
 
 # Hands On AI Argumented Lab Demo
@@ -18,7 +20,7 @@ Laboratory equipment are expensive. Learning on 2D blackboard is unengaging. Aim
 ### Demo Notes Drawing: https://youtu.be/-qrMq-FZTkg?si=WSMF8oVQxwj4frcs
 
 ![Group 3](https://github.com/TungVietLe/HandsOn/assets/99946449/73a44b9e-21be-490c-972d-8c47ef39c58c)
-<em>Note: Suggested UI (not developed yet).<em>
+<em>Note: Suggested UI (under development).<em>
 
 # Interacting with the environment using natural language
 a. Speak to Hands On:
