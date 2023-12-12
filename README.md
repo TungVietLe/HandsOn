@@ -1,11 +1,16 @@
 ### Notice of possible occurrence: 
 After publishing this Github repo, I saw that my Azure credit was significantly dropped, resulting in Speech API deny. This might be due to bad people taking advantage of my Azure keys and endpoints, which are hard coded (although a bad practice but due to time constrain). I'm trying to fix it so that the speech-to-text will work again. 
 
+
+
 # Docs
 
-Official Docs _(coming soon)_
+![0 2](https://github.com/project-slot/HandsOn/assets/99946449/c31ee4f9-ec34-4025-8472-711add9ca54d)
+*Development architecture. Server architecture is underdevelopment.*
 
-[class ADT](https://github.com/TungVietLe/HandsOn/blob/main/ADT.md)
+- Official Docs _(coming soon)_
+
+- [class ADT](https://github.com/TungVietLe/HandsOn/blob/main/ADT.md)
 
 
 
@@ -65,6 +70,9 @@ Develop for Android AR Core
 # Many challenges still to come
 ![Screenshot 2023-10-30 140037](https://github.com/TungVietLe/HandsOn/assets/99946449/d3d547d4-d10c-4dba-bd61-728abf012ea6)
 It's just a super early state. The model is still improving and hasn't generalized things well enough. Currently, the project is just a prototype with some simple requests. 
+
+
+
 
 # Future goals
 1. AI Real-time feedback (Anticipated example use cases):
